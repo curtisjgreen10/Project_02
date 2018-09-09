@@ -8,5 +8,14 @@ namespace BookSystemClient
 {
     class BookStore
     {
+        public BookStore(){
+
+        }
+
+        public OrderClass myOrder(OrderClass obj){
+            Encoder.send(obj);  //Send to encoder
+            //send something to publisher
+        }
+
     }
 }
