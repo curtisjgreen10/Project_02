@@ -8,5 +8,6 @@ namespace BookSystemClient
 {
     class OrderClass
     {
+        print("");
     }
 }
