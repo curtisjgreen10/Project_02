@@ -80,5 +80,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookSystemClient\BookSystemClient.csproj">
+      <Project>{6727a094-48ac-479b-a360-e3412515dab0}</Project>
+      <Name>BookSystemClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookSystemServer\BookSystemServer.csproj">
+      <Project>{26739036-0072-4d97-a829-fccba17cb632}</Project>
+      <Name>BookSystemServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

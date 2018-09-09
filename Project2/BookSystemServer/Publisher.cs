@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace BookSystemServer
 {
-    class Publisher
+    public class Publisher
     {
+        public Publisher()
+        {
+
+        }
+
+        public int PricingModel(int orderAmount)
+        {
+            return 0;
+        }
     }
 }
