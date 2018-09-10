@@ -1,4 +1,4 @@
-﻿namespace Client
+﻿namespace BookDistSystem
 {
     partial class MainForm
     {

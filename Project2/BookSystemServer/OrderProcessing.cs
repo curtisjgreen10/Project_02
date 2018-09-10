@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace BookSystemServer
 {
-    class OrderProcessing
+    public class OrderProcessing
     {
+        public OrderProcessing()
+        {
+
+        }
+
+        public void Start()
+        {
+
+        }
     }
 }
