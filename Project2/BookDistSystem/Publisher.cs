@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace BookDistSystem
 {
@@ -10,10 +11,9 @@ namespace BookDistSystem
     {
         private int numPriceCuts = 0;
         
-        OrderEvent order = new OrderEvent();
         public Publisher()
         {
-            
+
         }
 
         /// <summary>
@@ -21,12 +21,14 @@ namespace BookDistSystem
         /// </summary>
         public void Start()
         {
-            order.orderEvent += Order_orderEvent;
-        }
-
-        private void Order_orderEvent()
-        {
-            
+            while (true)
+            {
+                //change condition on this and add locking mechanism
+                if (MultiCellBuffer.OrderAmount > 2)
+                {
+                    MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString());
+                }
+            }
         }
 
         public int PricingModel(int orderAmount)
