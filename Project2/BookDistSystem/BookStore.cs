@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookSystemClient
+namespace BookDistSystem
 {
-    class BookStore
-    {
-        public BookStore(){
-
+    public class BookStore
+    { 
+        public static string priceCutEventHandler(OrderClass obj)
+        {
+            string encoded = Encoder.encode(obj);
+            return encoded; // Send to MultiCellBuffer, call or return?
         }
-
-        /*
-        public OrderClass myOrder(OrderClass obj){
-            Encoder.send(obj);  //Send to encoder
-            //send something to publisher
-        }
-        */
     }
 }

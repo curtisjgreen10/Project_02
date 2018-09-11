@@ -14,12 +14,12 @@ namespace BookDistSystem
         private int amount;     // Amount of books to order
         private int unitPrice;  // Price per unit of book
 
-        public OrderClass(int senderId, int cardNo, int receiverId, int amount, int unitPrice){
-            this.senderId = senderId;
-            this.cardNo = cardNo;
-            this.receiverId = receiverId;
-            this.amount = amount;
-            this.unitPrice = unitPrice;
+        public OrderClass(){
+            this.senderId = 0;
+            this.cardNo = 0;
+            this.receiverId = 0;
+            this.amount = 0;
+            this.unitPrice = 0;
         }
 
         public int getSenderId()
