@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookStore.cs" />
+    <Compile Include="Decoder.cs" />
+    <Compile Include="Encoder.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,8 +56,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiCellBuffer.cs" />
+    <Compile Include="OrderClass.cs" />
+    <Compile Include="OrderProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publisher.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,16 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookSystemClient\BookSystemClient.csproj">
-      <Project>{6727a094-48ac-479b-a360-e3412515dab0}</Project>
-      <Name>BookSystemClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BookSystemServer\BookSystemServer.csproj">
-      <Project>{26739036-0072-4d97-a829-fccba17cb632}</Project>
-      <Name>BookSystemServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

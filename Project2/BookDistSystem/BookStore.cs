@@ -12,10 +12,11 @@ namespace BookSystemClient
 
         }
 
+        /*
         public OrderClass myOrder(OrderClass obj){
             Encoder.send(obj);  //Send to encoder
             //send something to publisher
         }
-
+        */
     }
 }

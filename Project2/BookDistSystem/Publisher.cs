@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookSystemServer
+namespace BookDistSystem
 {
     public class Publisher
     {
         private int numPriceCuts = 0;
-        //need this in here...somehow
-        //OrderEvent order = new OrderEvent();
+        
+        OrderEvent order = new OrderEvent();
         public Publisher()
         {
             
@@ -21,11 +21,13 @@ namespace BookSystemServer
         /// </summary>
         public void Start()
         {
-            //subscribe to events
-            //order.orderEvent += someEventHandler();
+            order.orderEvent += Order_orderEvent;
         }
 
-        
+        private void Order_orderEvent()
+        {
+            
+        }
 
         public int PricingModel(int orderAmount)
         {
@@ -57,10 +59,5 @@ namespace BookSystemServer
 
             return price;
         }
-
-
-
-
-
     }
 }
