@@ -19,22 +19,30 @@ namespace BookDistSystem
         /// <summary>
         /// method to be called by main as a thread
         /// </summary>
-        public void Start()
+        public void RunPublisher()
         {
             while (true)
             {
-                //change condition on this and add locking mechanism
-                if (MultiCellBuffer.OrderAmount > 2)
+                lock (MultiCellBuffer.pubLock)
                 {
-                    MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString());
+                    if (MultiCellBuffer.OrderRecieved)
+                    {
+                        MultiCellBuffer.Order.setSenderId(Thread.CurrentThread.ManagedThreadId);
+                        MultiCellBuffer.NewSender = true;
+                        MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() + 
+                            " is processing the order amount of: " + MultiCellBuffer.Order.getAmount().ToString());
+                        MultiCellBuffer.UnitPrice = PricingModel(MultiCellBuffer.Order.getAmount());
+                        MultiCellBuffer.OrderRecieved = false;
+                        MultiCellBuffer.PriceCalculated = true;
+                    }
                 }
             }
         }
 
-        public int PricingModel(int orderAmount)
+        public double PricingModel(int orderAmount)
         {
             Random rnd = new Random();
-            int price = rnd.Next(50, 201);
+            double price = (rnd.NextDouble() * 150) + 50;
 
             if(orderAmount > 10 && orderAmount <= 20)
             {

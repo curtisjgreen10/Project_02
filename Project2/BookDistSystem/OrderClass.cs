@@ -12,7 +12,7 @@ namespace BookDistSystem
         private int cardNo;     // Credit card number
         private int receiverId; // Identity of receiever, can use thread name or unique name defined for publisher
         private int amount;     // Amount of books to order
-        private int unitPrice;  // Price per unit of book
+        private double unitPrice;  // Price per unit of book
 
         public OrderClass(){
             this.senderId = 0;
@@ -42,7 +42,7 @@ namespace BookDistSystem
             return this.amount;
         }
 
-        public int getUnitPrice()
+        public double getUnitPrice()
         {
             return this.unitPrice;
         }
@@ -67,7 +67,7 @@ namespace BookDistSystem
             amount = num;
         }
 
-        public void setUnitPrice(int price)
+        public void setUnitPrice(double price)
         {
             unitPrice = price;
         }
