@@ -10,7 +10,8 @@ namespace BookDistSystem
     public class Publisher
     {
         private int numPriceCuts = 0;
-        
+        static OrderProcessing Processor = new OrderProcessing();
+
         public Publisher()
         {
 
@@ -23,7 +24,7 @@ namespace BookDistSystem
         {
             while (true)
             {
-                lock (MultiCellBuffer.pubLock)
+                lock (MultiCellBuffer.priceLock)
                 {
                     if (MultiCellBuffer.OrderRecieved)
                     {
@@ -31,9 +32,30 @@ namespace BookDistSystem
                         MultiCellBuffer.NewSender = true;
                         MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() + 
                             " is processing the order amount of: " + MultiCellBuffer.Order.getAmount().ToString());
-                        MultiCellBuffer.UnitPrice = PricingModel(MultiCellBuffer.Order.getAmount());
+                        MultiCellBuffer.Order.setUnitPrice(PricingModel(MultiCellBuffer.Order.getAmount()));
                         MultiCellBuffer.OrderRecieved = false;
                         MultiCellBuffer.PriceCalculated = true;
+                    }
+                }
+
+                lock (MultiCellBuffer.priceLock)
+                {
+                    if (MultiCellBuffer.NewMsg)
+                    {
+                        for(int i = 0; i < 3; i++)
+                        {
+                            if (MultiCellBuffer.buffer[i] != null)
+                            {
+                                string[] orderInfo = Decoder.Decode(MultiCellBuffer.buffer[i]);
+                                //free the space in the buffer
+                                MultiCellBuffer.buffer[i] = null;
+                                //start oder processing thread
+                                Thread ProcessOrder = new Thread(() => Processor.Process(orderInfo));
+                                ProcessOrder.Start();
+                                break;
+                            }
+                        }
+                        MultiCellBuffer.NewMsg = false;
                     }
                 }
             }

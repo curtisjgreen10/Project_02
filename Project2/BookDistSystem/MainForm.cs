@@ -30,6 +30,7 @@ namespace BookDistSystem
         Thread bookStoreThread3;
         Thread bookStoreThread4;
         Thread bookStoreThread5;
+        Thread bufferThread;
 
         public MainForm()
         {
@@ -51,6 +52,8 @@ namespace BookDistSystem
             bookStoreThread4.Start();
             bookStoreThread5 = new Thread(() => BookStore5.RunStore());
             bookStoreThread5.Start();
+            bufferThread = new Thread(() => buff.RunBuffer());
+            bufferThread.Start();
         }
 
         private void btn_order_Click(object sender, EventArgs e)

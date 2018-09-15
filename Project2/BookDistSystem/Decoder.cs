@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace BookDistSystem
 {
-    class Decoder
+    public class Decoder
     {
+        public Decoder()
+        {
+
+        }
+
+        public static string[] Decode(string encodedStr)
+        {
+            string[] decodedStrings = encodedStr.Split('#');
+            return decodedStrings;
+        }
     }
 }

@@ -32,11 +32,23 @@ namespace BookDistSystem
                     if (MultiCellBuffer.PriceCalculated)
                     {
                         MultiCellBuffer.Order.setReceieverId(Thread.CurrentThread.ManagedThreadId);
-                        string temp = EncodeOrder(MultiCellBuffer.UnitPrice);
+                        MultiCellBuffer.EncodedMsg = EncodeOrder(MultiCellBuffer.Order.getUnitPrice());
                         MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() +
-                        " encoded calculated price: " + MultiCellBuffer.UnitPrice.ToString() + " into\n " + temp);
-
+                        " encoded calculated price: " + MultiCellBuffer.Order.getUnitPrice().ToString() + " into\n " + 
+                        MultiCellBuffer.EncodedMsg);
                         MultiCellBuffer.PriceCalculated = false;
+                        MultiCellBuffer.MessageSent = true;
+                    }
+                }
+
+                lock (MultiCellBuffer.validLock)
+                {
+                    if (MultiCellBuffer.OrderValid)
+                    {
+                        //should probably make sure that the same thread executes this that performed the above code
+                        MessageBox.Show("Valid order processed by thread number: " + 
+                            Thread.CurrentThread.ManagedThreadId.ToString());
+                        MultiCellBuffer.OrderValid = false;
                     }
                 }
             }
