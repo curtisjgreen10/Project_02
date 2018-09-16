@@ -22,6 +22,7 @@ namespace BookDistSystem
         /// </summary>
         public void RunPublisher()
         {
+            
             while (true)
             {
                 lock (MultiCellBuffer.priceLock)
@@ -29,12 +30,23 @@ namespace BookDistSystem
                     if (MultiCellBuffer.OrderRecieved)
                     {
                         MultiCellBuffer.Order.setSenderId(Thread.CurrentThread.ManagedThreadId);
+                        (Application.OpenForms[0] as MainForm).setSendIDtxt(Thread.CurrentThread.ManagedThreadId);
                         MultiCellBuffer.NewSender = true;
                         MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() + 
                             " is processing the order amount of: " + MultiCellBuffer.Order.getAmount().ToString());
-                        MultiCellBuffer.Order.setUnitPrice(PricingModel(MultiCellBuffer.Order.getAmount()));
+                        //MultiCellBuffer.Order.setUnitPrice(PricingModel());
+                        int calculatedPrice = MultiCellBuffer.Order.getAmount();
                         MultiCellBuffer.OrderRecieved = false;
                         MultiCellBuffer.PriceCalculated = true;
+                        if (MultiCellBuffer.bookStoreThreadCnt < 5)
+                        {
+                            Thread bookStoreThread = new Thread(() => BookStore.RunStore(calculatedPrice));
+                            bookStoreThread.Start();
+                        }
+                        else
+                        {
+                            MessageBox.Show("All bookstores busy");
+                        }
                     }
                 }
 

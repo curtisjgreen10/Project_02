@@ -25,11 +25,13 @@ namespace BookDistSystem
         static BookStore BookStore5 = new BookStore();
         Thread publishThread1;
         Thread publishThread2;
+        /*
         Thread bookStoreThread1;
         Thread bookStoreThread2;
         Thread bookStoreThread3;
         Thread bookStoreThread4;
         Thread bookStoreThread5;
+        */
         Thread bufferThread;
 
         public MainForm()
@@ -37,11 +39,14 @@ namespace BookDistSystem
             InitializeComponent();
             //create buffer, publishers, and bookstores on start up
             buff = new MultiCellBuffer(3);
+            bufferThread = new Thread(() => buff.RunBuffer());
+            bufferThread.Start();
             //start all publisher and bookstore threads
             publishThread1 = new Thread(() => publisher1.RunPublisher());
             publishThread1.Start();
             publishThread2 = new Thread(() => publisher2.RunPublisher());
             publishThread2.Start();
+            /* find better logic for this
             bookStoreThread1 = new Thread(() => BookStore1.RunStore());
             bookStoreThread1.Start();
             bookStoreThread2 = new Thread(() => BookStore2.RunStore());
@@ -52,8 +57,7 @@ namespace BookDistSystem
             bookStoreThread4.Start();
             bookStoreThread5 = new Thread(() => BookStore5.RunStore());
             bookStoreThread5.Start();
-            bufferThread = new Thread(() => buff.RunBuffer());
-            bufferThread.Start();
+            */
         }
 
         private void btn_order_Click(object sender, EventArgs e)
@@ -73,7 +77,7 @@ namespace BookDistSystem
 
         public void setSendIDtxt(int ID)
         {
-            txt_senderId.Text = Convert.ToInt32(ID).ToString();
+            txt_senderId1.Text = Convert.ToInt32(ID).ToString();
         }
 
         public void setRcvrIDtxt(int ID)

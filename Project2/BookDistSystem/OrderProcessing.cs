@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace BookDistSystem
 {
@@ -15,6 +16,9 @@ namespace BookDistSystem
 
         public void Process(string[] orderInfo)
         {
+            MultiCellBuffer.OrderProcessed = true;
+            MessageBox.Show("Order being processed by process thread number: " +
+                Thread.CurrentThread.ManagedThreadId.ToString());
             //assume valid until otherwise proven
             MultiCellBuffer.OrderValid = true;
             int senderID = Convert.ToInt32(orderInfo[0]);
@@ -28,7 +32,6 @@ namespace BookDistSystem
                 MultiCellBuffer.OrderValid = false;
                 return;
             }
-            
             double totalPrice = amount * unitPrice;
         }
     }

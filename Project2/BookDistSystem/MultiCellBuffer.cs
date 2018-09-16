@@ -25,12 +25,13 @@ namespace BookDistSystem
 
         static public bool OrderRecieved { get; set; } = false;
         static public bool PriceCalculated { get; set; } = false;
-        //static public double UnitPrice { get; set; } = 0;
         static public bool NewSender { get; set; } = false;
         static public bool MessageSent { get; set; } = false;
         static public string EncodedMsg { get; set; }
         static public bool NewMsg { get; set; } = false;
         static public bool OrderValid { get; set; } = false;
+        static public int bookStoreThreadCnt { get; set; } = 0;
+        static public bool OrderProcessed { get; set; } = false;
 
         public void RunBuffer()
         {
