@@ -36,40 +36,47 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_recvrId = new System.Windows.Forms.TextBox();
+            this.txt_recvrId1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_senderId1 = new System.Windows.Forms.TextBox();
             this.txt_senderId2 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txt_recvrId2 = new System.Windows.Forms.TextBox();
+            this.txt_recvrId3 = new System.Windows.Forms.TextBox();
+            this.txt_recvrId4 = new System.Windows.Forms.TextBox();
+            this.txt_recvrId5 = new System.Windows.Forms.TextBox();
+            this.txt_recvrId5_status = new System.Windows.Forms.TextBox();
+            this.txt_recvrId4_status = new System.Windows.Forms.TextBox();
+            this.txt_recvrId3_status = new System.Windows.Forms.TextBox();
+            this.txt_recvrId2_status = new System.Windows.Forms.TextBox();
+            this.txt_recvrId1_status = new System.Windows.Forms.TextBox();
             this.txt_senderId2_status = new System.Windows.Forms.TextBox();
             this.txt_senderId1_status = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txt_cardNo
             // 
-            this.txt_cardNo.Location = new System.Drawing.Point(104, 319);
+            this.txt_cardNo.Location = new System.Drawing.Point(79, 321);
             this.txt_cardNo.Name = "txt_cardNo";
             this.txt_cardNo.Size = new System.Drawing.Size(138, 20);
             this.txt_cardNo.TabIndex = 1;
             // 
             // txt_amountBks
             // 
-            this.txt_amountBks.Location = new System.Drawing.Point(104, 357);
+            this.txt_amountBks.Location = new System.Drawing.Point(79, 359);
             this.txt_amountBks.Name = "txt_amountBks";
             this.txt_amountBks.Size = new System.Drawing.Size(138, 20);
             this.txt_amountBks.TabIndex = 3;
             // 
             // txt_bookPrice
             // 
-            this.txt_bookPrice.Location = new System.Drawing.Point(612, 386);
+            this.txt_bookPrice.Location = new System.Drawing.Point(410, 383);
             this.txt_bookPrice.Name = "txt_bookPrice";
             this.txt_bookPrice.Size = new System.Drawing.Size(138, 20);
             this.txt_bookPrice.TabIndex = 4;
@@ -105,7 +112,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(531, 390);
+            this.label5.Location = new System.Drawing.Point(373, 386);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 10;
@@ -120,12 +127,12 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Recvr ID ( thread number of bookstore )";
             // 
-            // txt_recvrId
+            // txt_recvrId1
             // 
-            this.txt_recvrId.Location = new System.Drawing.Point(292, 156);
-            this.txt_recvrId.Name = "txt_recvrId";
-            this.txt_recvrId.Size = new System.Drawing.Size(138, 20);
-            this.txt_recvrId.TabIndex = 2;
+            this.txt_recvrId1.Location = new System.Drawing.Point(292, 156);
+            this.txt_recvrId1.Name = "txt_recvrId1";
+            this.txt_recvrId1.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId1.TabIndex = 2;
             // 
             // label1
             // 
@@ -150,73 +157,73 @@
             this.txt_senderId2.Size = new System.Drawing.Size(138, 20);
             this.txt_senderId2.TabIndex = 11;
             // 
-            // textBox2
+            // txt_recvrId2
             // 
-            this.textBox2.Location = new System.Drawing.Point(292, 193);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(138, 20);
-            this.textBox2.TabIndex = 12;
+            this.txt_recvrId2.Location = new System.Drawing.Point(292, 193);
+            this.txt_recvrId2.Name = "txt_recvrId2";
+            this.txt_recvrId2.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId2.TabIndex = 12;
             // 
-            // textBox3
+            // txt_recvrId3
             // 
-            this.textBox3.Location = new System.Drawing.Point(292, 230);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(138, 20);
-            this.textBox3.TabIndex = 13;
+            this.txt_recvrId3.Location = new System.Drawing.Point(292, 230);
+            this.txt_recvrId3.Name = "txt_recvrId3";
+            this.txt_recvrId3.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId3.TabIndex = 13;
             // 
-            // textBox4
+            // txt_recvrId4
             // 
-            this.textBox4.Location = new System.Drawing.Point(292, 268);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(138, 20);
-            this.textBox4.TabIndex = 14;
+            this.txt_recvrId4.Location = new System.Drawing.Point(292, 268);
+            this.txt_recvrId4.Name = "txt_recvrId4";
+            this.txt_recvrId4.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId4.TabIndex = 14;
             // 
-            // textBox5
+            // txt_recvrId5
             // 
-            this.textBox5.Location = new System.Drawing.Point(292, 304);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(138, 20);
-            this.textBox5.TabIndex = 15;
+            this.txt_recvrId5.Location = new System.Drawing.Point(292, 304);
+            this.txt_recvrId5.Name = "txt_recvrId5";
+            this.txt_recvrId5.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId5.TabIndex = 15;
             // 
-            // textBox6
+            // txt_recvrId5_status
             // 
-            this.textBox6.Location = new System.Drawing.Point(469, 304);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(138, 20);
-            this.textBox6.TabIndex = 20;
+            this.txt_recvrId5_status.Location = new System.Drawing.Point(469, 304);
+            this.txt_recvrId5_status.Name = "txt_recvrId5_status";
+            this.txt_recvrId5_status.ReadOnly = true;
+            this.txt_recvrId5_status.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId5_status.TabIndex = 20;
             // 
-            // textBox7
+            // txt_recvrId4_status
             // 
-            this.textBox7.Location = new System.Drawing.Point(469, 268);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(138, 20);
-            this.textBox7.TabIndex = 19;
+            this.txt_recvrId4_status.Location = new System.Drawing.Point(469, 268);
+            this.txt_recvrId4_status.Name = "txt_recvrId4_status";
+            this.txt_recvrId4_status.ReadOnly = true;
+            this.txt_recvrId4_status.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId4_status.TabIndex = 19;
             // 
-            // textBox8
+            // txt_recvrId3_status
             // 
-            this.textBox8.Location = new System.Drawing.Point(469, 230);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(138, 20);
-            this.textBox8.TabIndex = 18;
+            this.txt_recvrId3_status.Location = new System.Drawing.Point(469, 230);
+            this.txt_recvrId3_status.Name = "txt_recvrId3_status";
+            this.txt_recvrId3_status.ReadOnly = true;
+            this.txt_recvrId3_status.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId3_status.TabIndex = 18;
             // 
-            // textBox9
+            // txt_recvrId2_status
             // 
-            this.textBox9.Location = new System.Drawing.Point(469, 193);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(138, 20);
-            this.textBox9.TabIndex = 17;
+            this.txt_recvrId2_status.Location = new System.Drawing.Point(469, 193);
+            this.txt_recvrId2_status.Name = "txt_recvrId2_status";
+            this.txt_recvrId2_status.ReadOnly = true;
+            this.txt_recvrId2_status.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId2_status.TabIndex = 17;
             // 
-            // textBox10
+            // txt_recvrId1_status
             // 
-            this.textBox10.Location = new System.Drawing.Point(469, 156);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(138, 20);
-            this.textBox10.TabIndex = 16;
+            this.txt_recvrId1_status.Location = new System.Drawing.Point(469, 156);
+            this.txt_recvrId1_status.Name = "txt_recvrId1_status";
+            this.txt_recvrId1_status.ReadOnly = true;
+            this.txt_recvrId1_status.Size = new System.Drawing.Size(138, 20);
+            this.txt_recvrId1_status.TabIndex = 16;
             // 
             // txt_senderId2_status
             // 
@@ -234,22 +241,92 @@
             this.txt_senderId1_status.Size = new System.Drawing.Size(138, 20);
             this.txt_senderId1_status.TabIndex = 21;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(219, 44);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Publisher 1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(217, 85);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Publisher 2";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(219, 159);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Bookstore 1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(221, 196);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 13);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Bookstore 2";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(222, 233);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Bookstore 3";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(222, 271);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 13);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "Bookstore 4";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(223, 307);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(64, 13);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Bookstore 5";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_senderId2_status);
             this.Controls.Add(this.txt_senderId1_status);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txt_recvrId5_status);
+            this.Controls.Add(this.txt_recvrId4_status);
+            this.Controls.Add(this.txt_recvrId3_status);
+            this.Controls.Add(this.txt_recvrId2_status);
+            this.Controls.Add(this.txt_recvrId1_status);
+            this.Controls.Add(this.txt_recvrId5);
+            this.Controls.Add(this.txt_recvrId4);
+            this.Controls.Add(this.txt_recvrId3);
+            this.Controls.Add(this.txt_recvrId2);
             this.Controls.Add(this.txt_senderId2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -259,7 +336,7 @@
             this.Controls.Add(this.btn_order);
             this.Controls.Add(this.txt_bookPrice);
             this.Controls.Add(this.txt_amountBks);
-            this.Controls.Add(this.txt_recvrId);
+            this.Controls.Add(this.txt_recvrId1);
             this.Controls.Add(this.txt_cardNo);
             this.Controls.Add(this.txt_senderId1);
             this.Name = "MainForm";
@@ -278,21 +355,28 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_recvrId;
+        private System.Windows.Forms.TextBox txt_recvrId1;
         protected internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_senderId1;
         private System.Windows.Forms.TextBox txt_senderId2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txt_recvrId2;
+        private System.Windows.Forms.TextBox txt_recvrId3;
+        private System.Windows.Forms.TextBox txt_recvrId4;
+        private System.Windows.Forms.TextBox txt_recvrId5;
+        private System.Windows.Forms.TextBox txt_recvrId5_status;
+        private System.Windows.Forms.TextBox txt_recvrId4_status;
+        private System.Windows.Forms.TextBox txt_recvrId3_status;
+        private System.Windows.Forms.TextBox txt_recvrId2_status;
+        private System.Windows.Forms.TextBox txt_recvrId1_status;
         private System.Windows.Forms.TextBox txt_senderId2_status;
         private System.Windows.Forms.TextBox txt_senderId1_status;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }
 

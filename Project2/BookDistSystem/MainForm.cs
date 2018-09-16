@@ -13,6 +13,15 @@ namespace BookDistSystem
 {
     public partial class MainForm : Form
     {
+        List<TextBox> sender_IDs = new List<TextBox>();
+        List<TextBox> sender_Status = new List<TextBox>();
+        List<TextBox> rcvr_IDs = new List<TextBox>();
+        List<TextBox> rcvr_Status = new List<TextBox>();
+        delegate void SenderIdDelegate(int ID, int num);
+        delegate void ReceiverIdDelegate(int ID, int num);
+        delegate void SenderStatusDelegate(string status, int num);
+        delegate void ReceiverStatusDelegate(int status, int num);
+        delegate void PriceDelegate(double price);
         //buffer needs to be static, will hold the shared thread data 
         static MultiCellBuffer buff;
         //not sure if the publishers need to be static
@@ -25,15 +34,8 @@ namespace BookDistSystem
         static BookStore BookStore5 = new BookStore();
         Thread publishThread1;
         Thread publishThread2;
-        /*
-        Thread bookStoreThread1;
-        Thread bookStoreThread2;
-        Thread bookStoreThread3;
-        Thread bookStoreThread4;
-        Thread bookStoreThread5;
-        */
         Thread bufferThread;
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -46,43 +48,99 @@ namespace BookDistSystem
             publishThread1.Start();
             publishThread2 = new Thread(() => publisher2.RunPublisher());
             publishThread2.Start();
-            /* find better logic for this
-            bookStoreThread1 = new Thread(() => BookStore1.RunStore());
-            bookStoreThread1.Start();
-            bookStoreThread2 = new Thread(() => BookStore2.RunStore());
-            bookStoreThread2.Start();
-            bookStoreThread3 = new Thread(() => BookStore3.RunStore());
-            bookStoreThread3.Start();
-            bookStoreThread4 = new Thread(() => BookStore4.RunStore());
-            bookStoreThread4.Start();
-            bookStoreThread5 = new Thread(() => BookStore5.RunStore());
-            bookStoreThread5.Start();
-            */
+            txt_senderId1_status.Text = "Runninng";
+            txt_senderId2_status.Text = "Runninng";
+            txt_recvrId1_status.Text = "Idle";
+            txt_recvrId2_status.Text = "Idle";
+            txt_recvrId3_status.Text = "Idle";
+            txt_recvrId4_status.Text = "Idle";
+            txt_recvrId5_status.Text = "Idle";
+            rcvr_IDs.Add(txt_recvrId1);
+            rcvr_IDs.Add(txt_recvrId2);
+            rcvr_IDs.Add(txt_recvrId3);
+            rcvr_IDs.Add(txt_recvrId4);
+            rcvr_IDs.Add(txt_recvrId5);
+            rcvr_Status.Add(txt_recvrId1_status);
+            rcvr_Status.Add(txt_recvrId2_status);
+            rcvr_Status.Add(txt_recvrId3_status);
+            rcvr_Status.Add(txt_recvrId4_status);
+            rcvr_Status.Add(txt_recvrId5_status);
+            sender_IDs.Add(txt_senderId1);
+            sender_IDs.Add(txt_senderId2);
+            sender_Status.Add(txt_senderId1_status);
+            sender_Status.Add(txt_senderId2_status);
         }
 
         private void btn_order_Click(object sender, EventArgs e)
         {
             MultiCellBuffer.Order.setAmount(Convert.ToInt32(txt_amountBks.Text));
             MultiCellBuffer.Order.setCardNo(Convert.ToInt32(txt_cardNo.Text));
-            /*Cross threaded exceptions here, need to resolve
-            Task.Factory.StartNew(() => 
-            {
-                while (!MultiCellBuffer.NewSender) ;
-                txt_senderId.Text = MultiCellBuffer.Order.getSenderId().ToString();
-            });
-            */
-            
             MultiCellBuffer.OrderRecieved = true;
         }
 
-        public void setSendIDtxt(int ID)
+        public void setRcvrIDtxt(int ID, int num)
         {
-            txt_senderId1.Text = Convert.ToInt32(ID).ToString();
+            if (rcvr_IDs[num].InvokeRequired)
+            {
+                SenderIdDelegate d = new SenderIdDelegate(setRcvrIDtxt);
+                Invoke(d, new object[] { ID, num });
+            }
+            else
+            {
+                rcvr_IDs[num].Text = ID.ToString();
+            }
         }
 
-        public void setRcvrIDtxt(int ID)
+        public void setSendIDtxt(int ID, int num)
         {
-            txt_recvrId.Text = Convert.ToInt32(ID).ToString();
+            if (sender_IDs[num].InvokeRequired)
+            {
+                SenderIdDelegate d = new SenderIdDelegate(setSendIDtxt);
+                Invoke(d, new object[] { ID, num });
+            }
+            else
+            {
+                sender_IDs[num].Text = ID.ToString();
+            }
+        }
+
+        public void setRcvrStatustxt(string status, int num)
+        {
+            if (rcvr_Status[num].InvokeRequired)
+            {
+                SenderStatusDelegate d = new SenderStatusDelegate(setRcvrStatustxt);
+                Invoke(d, new object[] { status , num});
+            }
+            else
+            {
+                rcvr_Status[num].Text = status;
+            }
+        }
+
+        public void setSendStatustxt(string status, int num)
+        {
+            if (sender_Status[num].InvokeRequired)
+            {
+                SenderStatusDelegate d = new SenderStatusDelegate(setSendStatustxt);
+                Invoke(d, new object[] { status, num });
+            }
+            else
+            {
+                sender_Status[num].Text = status;
+            }
+        }
+
+        public void setPrice(double price)
+        {
+            if (txt_senderId1.InvokeRequired)
+            {
+                PriceDelegate d = new PriceDelegate(setPrice);
+                Invoke(d, new object[] { price });
+            }
+            else
+            {
+                txt_bookPrice.Text = price.ToString();
+            }
         }
     }
 }

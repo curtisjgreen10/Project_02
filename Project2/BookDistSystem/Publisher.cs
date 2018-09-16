@@ -22,22 +22,23 @@ namespace BookDistSystem
         /// </summary>
         public void RunPublisher()
         {
-            
             while (true)
             {
+                //split this work up to further utilize multithreading
                 lock (MultiCellBuffer.priceLock)
                 {
                     if (MultiCellBuffer.OrderRecieved)
                     {
                         MultiCellBuffer.Order.setSenderId(Thread.CurrentThread.ManagedThreadId);
-                        (Application.OpenForms[0] as MainForm).setSendIDtxt(Thread.CurrentThread.ManagedThreadId);
+                        (Application.OpenForms[0] as MainForm).setSendIDtxt(Thread.CurrentThread.ManagedThreadId, 1);
+                        //simulate work being done
+                        Thread.Sleep(10000);
                         MultiCellBuffer.NewSender = true;
-                        MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() + 
-                            " is processing the order amount of: " + MultiCellBuffer.Order.getAmount().ToString());
+                        //MessageBox.Show("Thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() + 
+                        //    " is processing the order amount of: " + MultiCellBuffer.Order.getAmount().ToString());
                         //MultiCellBuffer.Order.setUnitPrice(PricingModel());
-                        int calculatedPrice = MultiCellBuffer.Order.getAmount();
+                        double calculatedPrice = PricingModel(MultiCellBuffer.Order.getAmount());
                         MultiCellBuffer.OrderRecieved = false;
-                        MultiCellBuffer.PriceCalculated = true;
                         if (MultiCellBuffer.bookStoreThreadCnt < 5)
                         {
                             Thread bookStoreThread = new Thread(() => BookStore.RunStore(calculatedPrice));
