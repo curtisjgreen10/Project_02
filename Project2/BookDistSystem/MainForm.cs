@@ -69,6 +69,7 @@ namespace BookDistSystem
             sender_IDs.Add(txt_senderId2);
             sender_Status.Add(txt_senderId1_status);
             sender_Status.Add(txt_senderId2_status);
+            Publisher.priceCut += new priceCutEvent(BookStore.Publisher_priceCut);
         }
 
         private void btn_order_Click(object sender, EventArgs e)

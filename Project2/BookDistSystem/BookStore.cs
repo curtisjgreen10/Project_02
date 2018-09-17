@@ -30,24 +30,48 @@ namespace BookDistSystem
             (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Running", num);
             //simulate work
             Thread.Sleep(10000);
-            MultiCellBuffer.Order.setReceieverId(Thread.CurrentThread.ManagedThreadId);
-            MultiCellBuffer.EncodedMsg = EncodeOrder(calculatedrice);
-            //MessageBox.Show("Bookstore thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() +
-            //" encoded calculated price: " + calculatedrice.ToString() + " into\n " + MultiCellBuffer.EncodedMsg);
-            MultiCellBuffer.MessageSent = true;
-
-            //wait here for order to be processed
-            while (!MultiCellBuffer.OrderProcessed) ;
-            if (MultiCellBuffer.OrderValid)
+            while (true)
             {
-                //should probably make sure that the same thread executes this that performed the above code
-                //MessageBox.Show("Valid order processed by bookstore thread number: " +
-                //    Thread.CurrentThread.ManagedThreadId.ToString());
-                MultiCellBuffer.OrderValid = false;
+                
+                lock (MultiCellBuffer.bookLock)
+                {
+                    if (!MultiCellBuffer.PublisherRunning)
+                    {
+                        MultiCellBuffer.PublisherRunning = true;
+                        MultiCellBuffer.bookStoreThreadCnt--;
+                        (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Idle", num);
+                        //terminate
+                        break;
+                    }
+                }
+
+                if (MultiCellBuffer.PriceCalculated)
+                {
+                    MultiCellBuffer.Order.setReceieverId(Thread.CurrentThread.ManagedThreadId);
+                    MultiCellBuffer.EncodedMsg = EncodeOrder(calculatedrice);
+                    //MessageBox.Show("Bookstore thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() +
+                    //" encoded calculated price: " + calculatedrice.ToString() + " into\n " + MultiCellBuffer.EncodedMsg);
+                    MultiCellBuffer.MessageSent = true;
+                    MultiCellBuffer.PriceCalculated = false;
+                }
+
+                //wait here for order to be processed
+                while (!MultiCellBuffer.OrderProcessed) ;
+                if (MultiCellBuffer.OrderValid)
+                {
+                    //should probably make sure that the same thread executes this that performed the above code
+                    //MessageBox.Show("Valid order processed by bookstore thread number: " +
+                    //    Thread.CurrentThread.ManagedThreadId.ToString());
+                    MultiCellBuffer.OrderValid = false;
+                }
+                MultiCellBuffer.OrderProcessed = false;
             }
-            MultiCellBuffer.OrderProcessed = false;
-            MultiCellBuffer.bookStoreThreadCnt--;
-            (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Idle", num);
+        }
+
+        static public void Publisher_priceCut()
+        {
+            //add some math operations in here
+            MessageBox.Show("PRICE CUT!!");
         }
 
         public static string EncodeOrder(double unitPrice)
