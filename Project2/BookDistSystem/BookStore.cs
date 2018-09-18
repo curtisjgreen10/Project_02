@@ -7,11 +7,9 @@ using System.Windows.Forms;
 
 namespace BookDistSystem
 {
-    public delegate void priceCutEvent(int price);  //Define delegate
     public class BookStore
     {
         static Random rng = new Random();
-        public static event priceCutEvent priceCut; //Define event
         private static int bookPrice = 10;
 
         public BookStore()
@@ -84,16 +82,16 @@ namespace BookDistSystem
             return bookPrice;   //bookPrice defaults to 10
         }
 
-        public static void changePrice(int price)
-        {
-            if(price < bookPrice)   //Price cut
-            {
-                if(priceCut != null)    //There is at least a subscriber
-                {
-                    priceCut(price);    //emit event to subscriber
-                }
-            }
-        }
+        //public static void changePrice(int price)
+        //{
+        //    if(price < bookPrice)   //Price cut
+        //    {
+        //        if(priceCut != null)    //There is at least a subscriber
+        //        {
+        //            priceCut(price);    //emit event to subscriber
+        //        }
+        //    }
+        //}
 
 
     }
