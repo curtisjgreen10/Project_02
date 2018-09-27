@@ -14,59 +14,102 @@ namespace BookDistSystem
         private int amount;     // Amount of books to order
         private double unitPrice;  // Price per unit of book
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public OrderClass(){
-            this.senderId = 0;
-            this.cardNo = 0;
-            this.receiverId = 0;
-            this.amount = 0;
-            this.unitPrice = 0;
+            senderId = 0;
+            cardNo = 0;
+            receiverId = 0;
+            amount = 0;
+            unitPrice = 0;
         }
 
+        /// <summary>
+        /// senderID getter
+        /// </summary>
+        /// <returns>int</returns>
         public int getSenderId()
         {
             return this.senderId;
         }
 
+        /// <summary>
+        /// cardNo getter
+        /// </summary>
+        /// <returns>int</returns>
         public int getCardNo()
         {
             return this.cardNo;
         }
 
+        /// <summary>
+        /// ReceiverId getter
+        /// </summary>
+        /// <returns>int</returns>
         public int getReceiverId()
         {
             return this.receiverId;
         }
 
+        /// <summary>
+        /// Amount getter
+        /// </summary>
+        /// <returns>int</returns>
         public int getAmount()
         {
             return this.amount;
         }
 
+        /// <summary>
+        /// unitprice getter
+        /// </summary>
+        /// <returns>double</returns>
         public double getUnitPrice()
         {
             return this.unitPrice;
         }
 
+        /// <summary>
+        /// senderId set method
+        /// </summary>
+        /// <param name="id"></param>
         public void setSenderId(int id)
         {
             senderId = id;
         }
 
+        /// <summary>
+        /// card number set method
+        /// </summary>
+        /// <param name="no"></param>
         public void setCardNo(int no)
         {
             cardNo = no;
         }
 
+        /// <summary>
+        /// Receiver ID set method
+        /// </summary>
+        /// <param name="id"></param>
         public void setReceieverId(int id)
         {
             receiverId = id;
         }
 
+        /// <summary>
+        /// Book amount set method
+        /// </summary>
+        /// <param name="num"></param>
         public void setAmount(int num)
         {
             amount = num;
         }
 
+        /// <summary>
+        /// Unit price set method
+        /// </summary>
+        /// <param name="price"></param>
         public void setUnitPrice(double price)
         {
             unitPrice = price;

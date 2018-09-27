@@ -8,11 +8,19 @@ namespace BookDistSystem
 {
     public class Encoder
     {
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Encoder()
         {
 
         }
 
+        /// <summary>
+        /// basic encode method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>string</returns>
         public static string encode(OrderClass obj)
         {
             string s = obj.getSenderId().ToString() + "#";  // (1) SenderId

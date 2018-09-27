@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace BookDistSystem
 {
+    /// <summary>
+    /// Bookstore class
+    /// </summary>
     public class BookStore
     { 
+        /// <summary>
+        /// Constuctor
+        /// </summary>
         public BookStore()
         {
 
-        }
-
-        public static string priceCutEventHandler(OrderClass obj)
-        {
-            string encoded = Encoder.encode(obj);
-            return encoded; // Send to MultiCellBuffer, call or return?
         }
 
         /// <summary>
@@ -25,55 +25,77 @@ namespace BookDistSystem
         /// </summary>
         public static void RunStore(double calculatedrice)
         {
-            int num = MultiCellBuffer.bookStoreThreadCnt++;
-            (Application.OpenForms[0] as MainForm).setRcvrIDtxt(Thread.CurrentThread.ManagedThreadId, num);
-            (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Running", num);
+            int threadNum;
+            lock (MultiCellBuffer.bookLock1)
+            {
+                //increment shared thread count variable and store into local thread variable to determine thread number 
+                MultiCellBuffer.bookStoreThreadCnt++;
+                threadNum = MultiCellBuffer.bookStoreThreadCnt;
+                (Application.OpenForms[0] as MainForm).setRcvrIDtxt(Thread.CurrentThread.ManagedThreadId, threadNum - 1);
+                (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Running", threadNum - 1);
+            }
             //simulate work
-            Thread.Sleep(10000);
+            Thread.Sleep(1000);
             while (true)
             {
-                
-                lock (MultiCellBuffer.bookLock)
+                lock (MultiCellBuffer.bookLock2)
                 {
                     if (!MultiCellBuffer.PublisherRunning)
                     {
                         MultiCellBuffer.PublisherRunning = true;
                         MultiCellBuffer.bookStoreThreadCnt--;
-                        (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Idle", num);
+                        (Application.OpenForms[0] as MainForm).setRcvrIDtxt(-1, threadNum - 1);
+                        (Application.OpenForms[0] as MainForm).setRcvrStatustxt("Idle", threadNum - 1);
                         //terminate
                         break;
                     }
                 }
 
-                if (MultiCellBuffer.PriceCalculated)
+                //maybe make this an event
+                lock (MultiCellBuffer.bookLock3)
                 {
-                    MultiCellBuffer.Order.setReceieverId(Thread.CurrentThread.ManagedThreadId);
-                    MultiCellBuffer.EncodedMsg = EncodeOrder(calculatedrice);
-                    //MessageBox.Show("Bookstore thread number: " + Thread.CurrentThread.ManagedThreadId.ToString() +
-                    //" encoded calculated price: " + calculatedrice.ToString() + " into\n " + MultiCellBuffer.EncodedMsg);
-                    MultiCellBuffer.MessageSent = true;
-                    MultiCellBuffer.PriceCalculated = false;
+                    if (MultiCellBuffer.PriceCalculated)
+                    {
+                        (Application.OpenForms[0] as MainForm).encodeOrder("Encoding", threadNum - 1);
+                        //simulate work
+                        Thread.Sleep(1000);
+                        MultiCellBuffer.Order.setReceieverId(Thread.CurrentThread.ManagedThreadId);
+                        //encode order
+                        MultiCellBuffer.EncodedMsg = EncodeOrder(calculatedrice);
+                        MultiCellBuffer.MessageSent = true;
+                        //reset the PriceCalculated bool so bookstore can continuously check for order to encode
+                        MultiCellBuffer.PriceCalculated = false;
+                        (Application.OpenForms[0] as MainForm).encodeOrder(" ", threadNum - 1);
+                    }
                 }
-
-                //wait here for order to be processed
-                while (!MultiCellBuffer.OrderProcessed) ;
-                if (MultiCellBuffer.OrderValid)
-                {
-                    //should probably make sure that the same thread executes this that performed the above code
-                    //MessageBox.Show("Valid order processed by bookstore thread number: " +
-                    //    Thread.CurrentThread.ManagedThreadId.ToString());
-                    MultiCellBuffer.OrderValid = false;
-                }
-                MultiCellBuffer.OrderProcessed = false;
             }
         }
 
+        /// <summary>
+        /// Event handler for price cut raised in publisher
+        /// </summary>
         static public void Publisher_priceCut()
         {
-            //add some math operations in here
-            MessageBox.Show("PRICE CUT!!");
+            //increment price cuts
+            MultiCellBuffer.numPriceCuts++;
+            //update GUI
+            (Application.OpenForms[0] as MainForm).setPriceCuts(MultiCellBuffer.numPriceCuts);
         }
 
+        /// <summary>
+        /// Event handler for order processed rasied in OrderProcessing class
+        /// </summary>
+        static public void Process_orderProcessed()
+        {
+            //addadd some code here maybe
+            //MessageBox.Show("VALID ORDER PROCESSED!!");
+        }
+
+        /// <summary>
+        /// Creates an encoded order string using #'s
+        /// </summary>
+        /// <param name="unitPrice">the calculated price of a single book</param>
+        /// <returns>string</returns>
         public static string EncodeOrder(double unitPrice)
         {
             MultiCellBuffer.Order.setUnitPrice(unitPrice);
